@@ -1,0 +1,17 @@
+name: macOS build and tests
+on: [push, pull_request, workflow_dispatch]
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: macos-14
+    steps:
+      - uses: actions/checkout@v4
+      - name: Core tests
+        run: zsh Scripts/test.sh
+      - name: Universal build
+        run: zsh build.sh
+      - name: Verify architectures and signature
+        run: |
+          lipo 'Codex用量.app/Contents/MacOS/CodexUsage' -verify_arch arm64 x86_64
+          codesign --verify --deep --strict 'Codex用量.app'

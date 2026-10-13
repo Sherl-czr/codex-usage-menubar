@@ -1,0 +1,16 @@
+.DS_Store
+.build/
+*.app/
+分享包/
+research/
+发布项目/
+.env
+.env.*
+*.p12
+*.pfx
+*.pem
+*.key
+*.mobileprovision
+*.log
+auth.json
+credentials.json
